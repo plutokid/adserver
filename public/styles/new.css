@@ -1,0 +1,81 @@
+body {
+  background: #f5f7f7 url('/images/paper.png') repeat;
+  margin: 0;
+}
+
+#header {
+  position: relative;
+  text-align: center;
+
+  top: 0;
+  margin: 0 auto;
+  max-width: 900px;
+  margin-bottom: 40px;
+  min-height: 100px;
+
+  background: #203045 url('/images/header.png') repeat;
+  color: #ffffff;
+  border-radius: 0px;
+}
+
+@media only screen and (min-width: 900px), only screen and (min-device-width: 900px) {
+  #header {
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+  }
+}
+@media only screen and (max-width: 900px), only screen and (max-device-width: 900px) {
+  #header {
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+  }
+}
+
+
+#header span {
+  margin: auto;
+  height: 30%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: absolute;
+
+  color: #ffc;
+  font-size: 40px;
+}
+
+form {
+  z-index: 1;
+  text-align: center;
+  
+  margin: 0 auto;
+  margin-top: 25px;
+  padding: 10px;
+  padding-bottom: 25px;
+
+  width: 400px;
+
+  border: 3px solid #b8b4b8;
+  border-radius: 15px;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.form-element {
+  margin: 20px;
+}
+
+input {
+  width: 230px;
+}
+
+input[type='text'] {
+  padding:5px;
+
+  font-family: Helvetica;
+  font-size: 16px;
+
+  color: #595959;
+  background:#FFFFFF;
+  border:1px solid #CCCCCC;
+}

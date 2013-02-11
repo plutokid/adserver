@@ -1,0 +1,35 @@
+#header
+  %span= @title
+
+#form-container
+  %form{action:'/create', method:'post', id:'ad', enctype:'multipart/form-date'}
+    .form-element
+      %label{for:'title'} Title:
+      %br
+      %input{type:'text', name:'ad[title]', id:'title'}
+    .form-element
+      %label{for:'width'} Width:
+      %br
+      %input{type:'text', name:'ad[width]', id:'width'}
+    .form-element
+      %label{for:'height'} Height:
+      %br
+      %input{type:'text', name:'ad[height]', id:'height'}
+    .form-element
+      %label{for:'filename'} Filename:
+      %br
+      %input{type:'text', name:'ad[filename]', id:'filename'}
+    .form-element
+      %label{for:'url'} URL:
+      %br
+      %input{type:'text', name:'ad[url]', id:'url'}
+    .form-element
+      %label{for:'content'} Content:
+      %br
+      %input{type:'text', name:'ad[content]', id:'content'}
+    .form-element
+      %label{for:'image'} Image File:
+      %br
+      %input{type:'file', name:'ad[image]', id:'image'}
+    %div
+      %input.fancy-button.fancy-orange{type:'submit', value:'Create Ad', disabled:'disabled'}

@@ -1,6 +1,10 @@
 !!!
 %head
-  %link{rel:'stylesheet', href:'styles/main-style.css'}
+  / %link{rel:'stylesheet', href:'/styles/main-style.css'}
+  - @stylesheets.each do |style|
+    %link{rel:'stylesheet', href:"/styles/#{style}"}
+  - @scripts.each do |script|
+    %script{href:"/scripts/#{script}"}
   %title= @title
 %body
   %div= yield

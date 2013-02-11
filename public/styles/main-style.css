@@ -13,7 +13,7 @@ body {
   padding: 2px;
   display: block;
   font-size: 12px;
-  background: #002e79;
+  background: #313f58 url('/images/jeans.png') repeat;
   color: #ffffb1;
   border-top: 3px solid #6c798c;
 }
