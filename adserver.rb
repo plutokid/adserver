@@ -40,9 +40,20 @@ class AdServer < Sinatra::Base
   get '/' do
     redirect '/list'
   end
-  
+
 
   get '/ad' do
+    random_id = repository(:default).adapter.query(
+        'SELECT id FROM ads ORDER BY random() LIMIT 1;'
+    )
+    @ad = Ad.get(random_id)
+    erb :ad, layout: false
+  end
+
+
+  get '/sample-ad' do
+    @title = 'A Sample Ad'
+    haml :'sample-ad'
   end
 
 
