@@ -36,12 +36,15 @@ class AdServer < Sinatra::Base
     @scripts = []
   end
 
+
   get '/' do
     redirect '/list'
   end
   
+
   get '/ad' do
   end
+
 
   get '/list' do
     @title = 'List Ads'
@@ -55,6 +58,7 @@ class AdServer < Sinatra::Base
     @scripts += ['jquery-1.9.1.min.js', 'new-ad.js']
     haml :new
   end
+
 
   post '/new' do
     @ad = Ad.new(params[:ad])
@@ -72,8 +76,17 @@ class AdServer < Sinatra::Base
     end
   end
 
+
   get '/delete/:id' do
+    ad = Ad.get(params[:id])
+    unless ad.nil?
+      path = File.join(Dir.pwd, '/public/ads/', ad.filename)
+      File.delete(path)
+      ad.destroy
+    end
+    redirect '/list'
   end
+
 
   get '/display/:id' do
     @ad = Ad.get(params[:id])
