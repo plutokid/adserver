@@ -4,5 +4,5 @@
       - @ads.each_with_index do |ad, index|
         %tr{class:('alt' if index%2==0)}
           %td
-            %a{href:"/show/#{ad.id}"}= ad.title
+            %a{href:"/display/#{ad.id}"}= ad.title
             %a{href:"/delete/#{ad.id}"} delete

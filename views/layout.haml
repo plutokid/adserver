@@ -25,7 +25,7 @@
               %li.item
                 %a{href:"/list"} Display
                 %ul.item-list
-                  - @ads.each do |ad|
+                  - @ads.first(3).each do |ad|
                     %li.detail-item
                       %a{href:"/display/#{ad.id}"}= ad.title
 
