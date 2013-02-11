@@ -49,6 +49,7 @@ class AdServer < Sinatra::Base
   get '/list' do
     @title = 'List Ads'
     @ads = Ad.all(:order => [:created_at.desc])
+    @stylesheets += ['list-ads.css']
     haml :list
   end
 
