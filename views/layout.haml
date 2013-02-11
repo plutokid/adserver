@@ -1,10 +1,35 @@
 !!!
+
 %head
   - @stylesheets.each do |style|
     %link{rel:'stylesheet', href:"/styles/#{style}"}
   - @scripts.each do |script|
     %script{src:"/scripts/#{script}"}
   %title= @title
+
 %body
+  #header
+    %table
+      %tr.title-container
+        %td
+          %span.title= @title
+
+      %tr
+        %td
+          #nav-container
+            %ul#navbar
+
+              %li.item
+                %a{href:'/new'} Create New Ad
+
+              %li.item
+                %a{href:"/list"} Display
+                %ul.item-list
+                  - @ads.each do |ad|
+                    %li.detail-item
+                      %a{href:"/display/#{ad.id}"}= ad.title
+
+
   %div= yield
+
   %div#copyright Copyright © 2013 Pooria Azimi

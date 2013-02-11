@@ -32,12 +32,12 @@ class AdServer < Sinatra::Base
   
   before do
     @stylesheets = ['main-style.css']
+    @ads = Ad.all(:order => [:created_at.desc])
     @scripts = []
   end
 
   get '/' do
-    @title = "Welcome to AdServer"
-    haml "hello"
+    redirect '/list'
   end
   
   get '/ad' do

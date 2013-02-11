@@ -1,9 +1,8 @@
-#header
-  %span= @title
-
-%table.list{border:0, cellpadding:0, cellspacing:10}
-  - @ads.each_with_index do |ad, index|
-    %tr{class:('alt' if index%2==0)}
-      %td
-        %a{href:"/show/#{ad.id}"}= ad.title
-        %a{href:"/delete/#{ad.id}"} delete
+#detail-container
+  %span#detail-view
+    %table.list{border:0, cellpadding:0, cellspacing:10}
+      - @ads.each_with_index do |ad, index|
+        %tr{class:('alt' if index%2==0)}
+          %td
+            %a{href:"/show/#{ad.id}"}= ad.title
+            %a{href:"/delete/#{ad.id}"} delete
