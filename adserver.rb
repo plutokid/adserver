@@ -62,6 +62,10 @@ class AdServer < Sinatra::Base
 
 
   post '/new' do
+    if !params[:image]
+      redirect '/new'
+    end
+
     @ad = Ad.new(params[:ad])
     @ad.content_type = params[:image][:type]
     @ad.size = File.size(params[:image][:tempfile])
@@ -73,7 +77,7 @@ class AdServer < Sinatra::Base
       end
       redirect "/display/#{@ad.id}"
     else
-      redirect '/list'
+      redirect '/new'
     end
   end
 
