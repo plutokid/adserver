@@ -47,12 +47,25 @@ class AdServer < Sinatra::Base
 
   get '/new' do
     @title = "Create A New Ad"
-    @stylesheets += ['new.css', 'buttons.css']
-    @scripts += ['jquery-1.9.1.min.js']
+    @stylesheets += ['new-ad.css', 'buttons.css',]
+    @scripts += ['jquery-1.9.1.min.js', 'new-ad.js']
     haml :new
   end
 
-  post '/create' do
+  post '/new' do
+    @ad = Ad.new(params[:ad])
+    @ad.content_type = params[:image][:type]
+    @ad.size = File.size(params[:image][:tempfile])
+
+    if @ad.save
+      path = File.join(Dir.pwd, '/public/ads/', @ad.filename)
+      File.open(path, 'wb') do |f|
+        f.write(params[:image][:tempfile]).read)
+      end
+      redirect "/show/#{@ad.id}"
+    else
+      redirect '/list'
+    end
   end
 
   get '/delete/:id' do
