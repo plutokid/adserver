@@ -48,6 +48,25 @@ body {
   font-size: 40px;
 }
 
+
+#detail-container {
+    margin: 0 auto;
+    margin-top: 25px;
+    padding: 10px;
+    padding-bottom: 25px;
+
+    max-width: 400px;
+
+    border: 3px solid #b8b4b8;
+    border-radius: 15px;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+#detail-view {
+    text-align: center;
+}
+
+
 #copyright {
   position: fixed;
   bottom: 0;

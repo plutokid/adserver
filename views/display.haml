@@ -1,0 +1,39 @@
+#header
+  %span= @title
+
+#detail-container
+  %span#detail-view
+    %div
+      %img{src:"/ads/#{@ad.filename}", width:"#{@ad.width}", height:"#{@ad.height}"}
+
+    %div
+      %b Title:
+      = @ad.title
+
+    %div
+      %b Content:
+      = @ad.content
+
+    %div
+      %b Width:
+      = "#{@ad.width} px"
+
+    %div
+      %b Height:
+      = "#{@ad.height} px"
+
+    %div
+      %b Filename:
+      %a{href:"/ads/#{@ad.filename}"}= @ad.filename
+
+    %div
+      %b Destination URL:
+      %br
+      %a{href:"#{@ad.url}"}= @ad.url
+
+    %div
+      %b
+        - if @ad.is_active
+          Active
+        - else
+          Not Active

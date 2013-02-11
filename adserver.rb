@@ -7,6 +7,7 @@ require 'haml'
 DataMapper::setup(:default, "sqlite3://#{Dir.pwd}/db/adserver.db")
 
 class Ad
+  attr_reader :image
 
   include DataMapper::Resource
 
@@ -43,6 +44,9 @@ class AdServer < Sinatra::Base
   end
 
   get '/list' do
+    @title = 'List Ads'
+    @ads = Ad.all(:order => [:created_at.desc])
+    haml :list
   end
 
   get '/new' do
@@ -60,9 +64,9 @@ class AdServer < Sinatra::Base
     if @ad.save
       path = File.join(Dir.pwd, '/public/ads/', @ad.filename)
       File.open(path, 'wb') do |f|
-        f.write(params[:image][:tempfile]).read)
+        f.write(params[:image][:tempfile].read)
       end
-      redirect "/show/#{@ad.id}"
+      redirect "/display/#{@ad.id}"
     else
       redirect '/list'
     end
@@ -71,7 +75,15 @@ class AdServer < Sinatra::Base
   get '/delete/:id' do
   end
 
-  get '/show/:id' do
+  get '/display/:id' do
+    @ad = Ad.get(params[:id])
+    if @ad
+      @title = "Display Ad: '#{@ad.title}'"
+      @stylesheets += ['display-ad.css']
+      haml :display
+    else
+      redirect '/list'
+    end
   end
 
   get '/click/:id' do

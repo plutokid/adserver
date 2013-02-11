@@ -1,47 +1,49 @@
 #header
   %span= @title
 
-#form-container
-  %form{action:'/new', method:'post', id:'new-ad', enctype:'multipart/form-date'}
+#detail-container
+  %span#detail-view
+    %form{action:'/new', method:'post', id:'new-ad', enctype:'multipart/form-data'}
 
-    %span.form-element
-      %label{for:'title'} Title
-      %span.required-field (required)
-      %br
-      %input{type:'text', name:'ad[title]', id:'title', placeholder:'great ad campaign!'}
+      %span.form-element
+        %label{for:'title'} Title
+        %span.required-field (required)
+        %br
+        %input{type:'text', name:'ad[title]', id:'title', placeholder:'Meet the Command Line'}
 
-    %span.form-element
-      %label{for:'width'} Width
-      %br
-      %input{type:'text', name:'ad[width]', id:'width'}
+      %span.form-element
+        %label{for:'width'} Width
+        %br
+        %input{type:'text', name:'ad[width]', id:'width', placeholder:'120'}
 
-    %span.form-element
-      %label{for:'height'} Height
-      %br
-      %input{type:'text', name:'ad[height]', id:'height'}
+      %span.form-element
+        %label{for:'height'} Height
+        %br
+        %input{type:'text', name:'ad[height]', id:'height', placeholder:'90'}
 
-    %span.form-element
-      %label{for:'filename'} Filename
-      %span.required-field (required)
-      %br
-      %input{type:'text', name:'ad[filename]', id:'filename'}
+      %span.form-element
+        %label{for:'filename'} Filename
+        %span.required-field (required)
+        %br
+        %input{type:'text', name:'ad[filename]', id:'filename', placeholder:'120x90-command-line.png'}
 
-    %span.form-element
-      %label{for:'url'} URL
-      %span.required-field (required)
-      %br
-      %input{type:'text', name:'ad[url]', id:'url'}
+      %span.form-element
+        %label{for:'url'} URL
+        %span.required-field (required)
+        %br
+        %input{type:'text', name:'ad[url]', id:'url', placeholder:'https://peepcode.com/products/meet-the-command-line'}
 
-    %span.form-element
-      %label{for:'content'} Content
-      %span.required-field (required)
-      %br
-      %input{type:'text', name:'ad[content]', id:'content'}
+      %span.form-element
+        %label{for:'content'} Content
+        %span.required-field (required)
+        %br
+        %input{type:'text', name:'ad[content]', id:'content', placeholder:'Unix Command Line Tutorial'}
 
-    %span.form-element
-      %label{for:'image'} Image File
-      %span.required-field (required)
-      %br
-      %input{type:'file', name:'ad[image]', id:'image'}
-    %div#create-button
-      %input.fancy-button.fancy-orange{type:'submit', value:'Create Ad'}
+      %span.form-element
+        %label{for:'image'} Image File
+        %span.required-field (required)
+        %br
+        %input{type:'file', name:'image', id:'image'}
+
+      %div#create-button
+        %input.fancy-button.fancy-orange{type:'submit', value:'Create Ad'}
