@@ -25,10 +25,22 @@ class Ad
   property :content_type, String
 
   has n, :clicks
+  has n, :displays
 end
 
 
 class Click
+  include DataMapper::Resource
+
+  property :id,           Serial
+  property :ip_address,   String
+  property :created_at,   DateTime
+
+  belongs_to :ad
+end
+
+
+class Display
   include DataMapper::Resource
 
   property :id,           Serial
@@ -60,6 +72,7 @@ class AdServer < Sinatra::Base
         'SELECT id FROM ads ORDER BY random() LIMIT 1;'
     )
     @ad = Ad.get(random_id)
+    @ad.displays.create(:ip_address => env["REMOTE_ADDR"])
     erb :ad, layout: false
   end
 

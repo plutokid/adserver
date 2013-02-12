@@ -6,11 +6,11 @@ table.list {
   border-collapse: collapse;
 }
 
-.list tr {
+.list tbody tr {
   background: #e6effb;
 }
 
-.list tr.alt {
+.list tbody tr.alt {
   background: #cfd7e2;
 }
 

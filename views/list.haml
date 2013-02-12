@@ -1,11 +1,15 @@
 #detail-container
   %span#detail-view
     %table.list
-      - @ads.each_with_index do |ad, index|
-        %tr{class:('alt' if index%2==0)}
-          %td
-            %a{href:"/display/#{ad.id}"}= ad.title
-          %td
-            [&nbsp;
-            %a{href:"/delete/#{ad.id}"}<> ✘
-            &nbsp;]
+      %thead
+      %tbody
+        - @ads.each_with_index do |ad, index|
+          %tr{class:('alt' if index%2==0)}
+            %td
+              %a{href:"/display/#{ad.id}"}= ad.title
+            %td
+              = "#{ad.clicks.size}&nbsp;/&nbsp;#{ad.displays.size}"
+            %td
+              [&nbsp;
+              %a{href:"/delete/#{ad.id}"}<> ✘
+              &nbsp;]

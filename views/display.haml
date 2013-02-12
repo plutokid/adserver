@@ -4,6 +4,16 @@
       %img{src:"/ads/#{@ad.filename}", width:"#{@ad.width}", height:"#{@ad.height}"}
 
     %div
+      %b Displays:
+      %br
+      = @ad.displays.size
+
+    %div
+      %b Clicks:
+      %br
+      = @ad.clicks.size
+
+    %div
       %b Title:
       = @ad.title
 
