@@ -2,11 +2,8 @@ require 'sinatra/base'
 require 'dm-core'
 require 'dm-timestamps'
 require 'dm-migrations'
-require 'digest/sha1'
-require 'sinatra/flash'
-require 'sinatra-authentication'
-require 'haml'
 require './lib/authorization'
+require 'haml'
 
 DataMapper::setup(:default, "sqlite3://#{Dir.pwd}/db/adserver.db")
 
@@ -57,8 +54,6 @@ end
 
 class AdServer < Sinatra::Base
 
-  use Rack::Session::Cookie, :secret => 'secret'
-  register Sinatra::Flash
   include Sinatra::Authorization
 
   DataMapper::auto_upgrade!
@@ -117,10 +112,7 @@ class AdServer < Sinatra::Base
         'SELECT id FROM ads ORDER BY random() LIMIT 1;'
     )
     @ad = Ad.get(random_id)
-    p @ad.displays.size
     @ad.displays.create(:ip_address => env["REMOTE_ADDR"])
-    p @ad.displays.size
-    @ad.save
     erb :ad, layout: false
   end
 
@@ -197,7 +189,6 @@ class AdServer < Sinatra::Base
   get '/click/:id' do
     ad = Ad.get(params[:id])
     ad.clicks.create(:ip_address => env["REMOTE_ADDR"])
-    ad.save
     redirect ad.url
   end
 

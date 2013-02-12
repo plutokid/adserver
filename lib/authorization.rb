@@ -19,8 +19,7 @@ module Sinatra
     def require_authorize!
       redirect "/login?to=#{escape(request.env["REQUEST_PATH"])}" unless authorized?
     end
- 
+
   end
 
-  register Authorization
 end
