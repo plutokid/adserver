@@ -11,27 +11,40 @@
   #header
     %table
       %tr.title-container
-        %td
+        %td{colspan:2}
           %span.title= @title
 
       %tr
-        %td
+        %td#standard-nav
           #nav-container
-            %ul#navbar
+            - if authorized?
+              %ul#navbar
 
-              %li.item
-                %a{href:'/new'} Create New Ad
+                %li.item
+                  %a{href:'/new'} Create New Ad
 
-              %li.item
-                %a{href:"/list"} Display
-                %ul.item-list
-                  - @ads.first(15).each do |ad|
-                    %li.detail-item
-                      %a{href:"/display/#{ad.id}"}= ad.title
+                %li.item
+                  %a{href:"/list"} Display
+                  %ul.item-list
+                    - @ads.first(15).each do |ad|
+                      %li.detail-item
+                        %a{href:"/display/#{ad.id}"}= ad.title
 
-              %li.item
-                %a{href:'/sample-ad'} View A Sample Ad
+                %li.item
+                  %a{href:'/sample-ad'} View A Sample Ad
+        %td#login-logout
+          #nav-container
+            - if authorized?
+              %ul#navbar
+                %li.item
+                  %a{href:'/logout'} Logout
+            - else
+              %ul#navbar
+                %li.item
+                  %a{href:'/login'} Login
 
+
+  = styled_flash
 
   %div= yield
 

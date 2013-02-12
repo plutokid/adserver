@@ -2,7 +2,11 @@ require 'sinatra/base'
 require 'dm-core'
 require 'dm-timestamps'
 require 'dm-migrations'
+require 'digest/sha1'
+require 'sinatra/flash'
+require 'sinatra-authentication'
 require 'haml'
+require './lib/authorization'
 
 DataMapper::setup(:default, "sqlite3://#{Dir.pwd}/db/adserver.db")
 
@@ -53,17 +57,58 @@ end
 
 class AdServer < Sinatra::Base
 
-  DataMapper::auto_upgrade! 
+  use Rack::Session::Cookie, :secret => 'secret'
+  register Sinatra::Flash
+  include Sinatra::Authorization
+
+  DataMapper::auto_upgrade!
+
+  enable :sessions
+  configure(:development) {
+    set :session_secret, "secret"
+  }
+
+  set :username, 'pooria'
+  set :password, '12345'
+
+
+
   
   before do
     @stylesheets = ['main-style.css']
-    @ads = Ad.all(:order => [:created_at.desc])
     @scripts = []
+    @ads = Ad.all(:order => [:created_at.desc])
   end
 
 
+
   get '/' do
-    redirect '/list'
+    if authorized?
+      redirect '/list'
+    else
+      redirect '/sample-ad'
+    end
+  end
+
+
+  get '/login' do
+    @stylesheets += ['login.css', 'buttons.css']
+    @title = 'Login'
+    haml :login
+  end
+
+  post '/login' do
+    if authorize(params[:username], params[:password])
+      redirect unescape(params[:redirect_to]) || '/'
+    else
+      redirect '/login'
+    end
+  end
+
+
+  get '/logout' do
+    logout!
+    redirect '/'
   end
 
 
@@ -72,7 +117,10 @@ class AdServer < Sinatra::Base
         'SELECT id FROM ads ORDER BY random() LIMIT 1;'
     )
     @ad = Ad.get(random_id)
+    p @ad.displays.size
     @ad.displays.create(:ip_address => env["REMOTE_ADDR"])
+    p @ad.displays.size
+    @ad.save
     erb :ad, layout: false
   end
 
@@ -84,6 +132,7 @@ class AdServer < Sinatra::Base
 
 
   get '/list' do
+    require_authorize!
     @title = 'List Ads'
     @ads = Ad.all(:order => [:created_at.desc])
     @stylesheets += ['list-ads.css']
@@ -91,6 +140,7 @@ class AdServer < Sinatra::Base
   end
 
   get '/new' do
+    require_authorize!
     @title = "Create A New Ad"
     @stylesheets += ['new-ad.css', 'buttons.css',]
     @scripts += ['jquery-1.9.1.min.js', 'new-ad.js']
@@ -99,6 +149,7 @@ class AdServer < Sinatra::Base
 
 
   post '/new' do
+    require_authorize!
     if !params[:image]
       redirect '/new'
     end
@@ -120,6 +171,7 @@ class AdServer < Sinatra::Base
 
 
   get '/delete/:id' do
+    require_authorize!
     ad = Ad.get(params[:id])
     unless ad.nil?
       path = File.join(Dir.pwd, '/public/ads/', ad.filename)
@@ -131,6 +183,7 @@ class AdServer < Sinatra::Base
 
 
   get '/display/:id' do
+    require_authorize!
     @ad = Ad.get(params[:id])
     if @ad
       @title = "Display Ad: '#{@ad.title}'"
@@ -144,6 +197,7 @@ class AdServer < Sinatra::Base
   get '/click/:id' do
     ad = Ad.get(params[:id])
     ad.clicks.create(:ip_address => env["REMOTE_ADDR"])
+    ad.save
     redirect ad.url
   end
 

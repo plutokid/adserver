@@ -1,0 +1,39 @@
+form {
+  margin-bottom: 15px;
+}
+
+span.form-element {
+  text-align: left;
+  margin: 10px;
+  display: inline-block;
+}
+
+label {
+  font-size: 13px;
+  font-weight: bold;
+}
+
+span.required-field {
+  font-size: 12px;
+  color: #b80018;
+  font-style: italic;
+}
+
+input {
+  width: 230px;
+}
+
+input[type='text'], input[type='password'] {
+  padding:5px;
+
+  font-family: Helvetica;
+  font-size: 16px;
+
+  color: #646464;
+  background:#f9f9f9;
+  border:1px solid #CCCCCC;
+}
+
+#login-button {
+  margin-top: 25px;
+}

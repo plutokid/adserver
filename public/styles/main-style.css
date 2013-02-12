@@ -47,6 +47,15 @@ body {
   height: 80px;
 }
 
+#header table #standard-nav {
+  width: 88%
+}
+
+#header table #login-logout{
+  text-align: right;
+  width: 12%
+}
+
 #header span.title {
   margin: auto;
   height: 40%;
@@ -148,6 +157,7 @@ body {
 #detail-container {
   margin: 0 auto;
   margin-top: 25px;
+  margin-bottom: 50px;
   padding: 10px;
 
   max-width: 400px;
