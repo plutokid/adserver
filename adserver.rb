@@ -129,6 +129,9 @@ class AdServer < Sinatra::Base
   end
 
   get '/click/:id' do
+    ad = Ad.get(params[:id])
+    ad.clicks.create(:ip_address => env["REMOTE_ADDR"])
+    redirect ad.url
   end
 
 end
