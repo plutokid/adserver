@@ -1,3 +1,4 @@
+require 'rack'
 require 'sinatra/base'
 require 'sinatra/contrib'
 require 'dm-core'
@@ -55,6 +56,7 @@ end
 
 
 class AdServer < Sinatra::Base
+  use Rack::ETag
 
   include Sinatra::Authorization
   register Sinatra::RespondWith

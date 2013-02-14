@@ -2,9 +2,7 @@
 
 %head
   - @stylesheets.each do |style|
-    %link{rel:'stylesheet', href:"/styles/#{style}"}
-  - @scripts.each do |script|
-    %script{src:"/scripts/#{script}"}
+    %link{rel:'stylesheet', href:"/stylesheets/#{style}"}
   %title= @title
 
 %body
@@ -50,3 +48,7 @@
   %div= yield
 
   %div#copyright Copyright © 2013 Pooria Azimi
+
+
+  - @scripts.each do |script|
+    %script{src:"/scripts/#{script}"}
