@@ -59,7 +59,9 @@ class AdServer < Sinatra::Base
   include Sinatra::Authorization
   register Sinatra::RespondWith
 
-  DataMapper::auto_upgrade!
+  configure :development do
+    DataMapper::auto_upgrade!
+  end
 
   enable :sessions
   configure(:development) {
