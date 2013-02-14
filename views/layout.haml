@@ -17,9 +17,12 @@
       %tr
         %td#standard-nav
           #nav-container
-            - if authorized?
-              %ul#navbar
+            %ul#navbar
 
+              %li.item
+                %a{href:'/'} Home
+
+              - if authorized?
                 %li.item
                   %a{href:'/new'} Create New Ad
 
@@ -32,6 +35,7 @@
 
                 %li.item
                   %a{href:'/sample-ad'} View A Sample Ad
+
         %td#login-logout
           #nav-container
             - if authorized?
