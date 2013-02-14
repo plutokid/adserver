@@ -129,6 +129,7 @@ body {
   display: block;
   min-width: 150px;
   background: #d9e1eb;
+  color: #2b2d2f;
 }
 
 #navbar > li.item:hover > ul.item-list > li.detail-item:first-child {
@@ -147,6 +148,27 @@ body {
 
 #navbar .detail-item > a {
   color: #2b2d2f;
+}
+
+.spinner {
+  /*margin-top: 10px;*/
+  padding: 10px 0px 10px 0;
+  text-align: center;
+}
+
+#refresh-button {
+  font-size:small;
+  font-style: italic;
+  text-decoration: none;
+  display: none;
+}
+
+#navbar > li.item:hover #refresh-button {
+  display: inline;
+}
+
+#refresh-button.on a {
+  color: #ff7020 !important;
 }
 
 

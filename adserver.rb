@@ -1,9 +1,11 @@
 require 'sinatra/base'
+require 'sinatra/contrib'
 require 'dm-core'
 require 'dm-timestamps'
 require 'dm-migrations'
-require './lib/authorization'
+require 'dm-serializer'
 require 'haml'
+require './lib/authorization'
 
 DataMapper::setup(:default, "sqlite3://#{Dir.pwd}/db/adserver.db")
 
@@ -55,6 +57,7 @@ end
 class AdServer < Sinatra::Base
 
   include Sinatra::Authorization
+  register Sinatra::RespondWith
 
   DataMapper::auto_upgrade!
 
@@ -71,8 +74,7 @@ class AdServer < Sinatra::Base
   
   before do
     @stylesheets = ['main-style.css']
-    @scripts = []
-    @ads = Ad.all(:order => [:created_at.desc])
+    @scripts = ['jquery-1.9.1.min.js', 'site-main.js', 'spin.min.js']
   end
 
 
@@ -124,18 +126,26 @@ class AdServer < Sinatra::Base
 
 
   get '/list' do
-    require_authorize!
-    @title = 'List Ads'
+    #require_authorize!
     @ads = Ad.all(:order => [:created_at.desc])
-    @stylesheets += ['list-ads.css']
-    haml :list
+    respond_with :list do |wants|
+      wants.html do
+        @title = 'List Ads'
+        @stylesheets += ['list-ads.css']
+        haml :list
+      end
+      wants.json do
+        @ads.to_json(:only => [:title, :id])
+      end
+    end
   end
+
 
   get '/new' do
     require_authorize!
     @title = "Create A New Ad"
     @stylesheets += ['new-ad.css', 'buttons.css',]
-    @scripts += ['jquery-1.9.1.min.js', 'new-ad.js']
+    @scripts += ['new-ad.js']
     haml :new
   end
 
@@ -186,10 +196,12 @@ class AdServer < Sinatra::Base
     end
   end
 
+
   get '/click/:id' do
     ad = Ad.get(params[:id])
     ad.clicks.create(:ip_address => env["REMOTE_ADDR"])
     redirect ad.url
   end
+
 
 end

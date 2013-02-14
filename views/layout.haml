@@ -27,14 +27,14 @@
                   %a{href:'/new'} Create New Ad
 
                 %li.item
-                  %a{href:"/list"} Display
-                  %ul.item-list
-                    - @ads.first(15).each do |ad|
-                      %li.detail-item
-                        %a{href:"/display/#{ad.id}"}= ad.title
-
-                %li.item
                   %a{href:'/sample-ad'} View A Sample Ad
+
+                %li.item#ads-list
+                  %a{href:"/list"} Display
+                  %span#refresh-button.off
+                    %a{href:"javascript:reload_ads_list();"} (refresh)
+                  %ul.item-list
+                    %li.detail-item Loading…
 
         %td#login-logout
           #nav-container
