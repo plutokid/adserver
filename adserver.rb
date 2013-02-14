@@ -128,7 +128,7 @@ class AdServer < Sinatra::Base
 
 
   get '/list' do
-    #require_authorize!
+    require_authorize!
     @ads = Ad.all(:order => [:created_at.desc])
     respond_with :list do |wants|
       wants.html do

@@ -101,13 +101,14 @@ body {
 }
 
 #navbar > li.item:hover {
-  background: #d9e1eb;;
+  background: #d9e1eb;
   border-top-right-radius: 7px;
   border-top-left-radius: 7px;
 }
+
 #navbar > li.item:hover > a {
-  color: #2b2d2f;
   text-decoration: underline;
+  color: #2b2d2f;
 }
 
 #navbar > li.item > ul.item-list {
@@ -130,6 +131,9 @@ body {
   min-width: 150px;
   background: #d9e1eb;
   color: #2b2d2f;
+  -webkit-transition: color 0.1s ease-out;
+  -webkit-transition: background 0.1s ease-out;
+
 }
 
 #navbar > li.item:hover > ul.item-list > li.detail-item:first-child {
@@ -151,7 +155,6 @@ body {
 }
 
 .spinner {
-  /*margin-top: 10px;*/
   padding: 10px 0px 10px 0;
   text-align: center;
 }
