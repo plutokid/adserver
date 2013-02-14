@@ -6,4 +6,4 @@ syntax: regexp
 tmp/.*
 \.sass-cache/.*
 db/.*
-public/styles/.*\.css
+public/stylesheets/.*\.css
