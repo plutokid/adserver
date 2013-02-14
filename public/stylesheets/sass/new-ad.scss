@@ -21,19 +21,16 @@ span.required-field {
 
 input {
   width: 230px;
+  &[type='text'] {
+    padding: 5px;
+    font-family: Helvetica;
+    font-size: 16px;
+    color: #646464;
+    background: #f9f9f9;
+    border: 1px solid #cccccc;
+  }
 }
 
-input[type='text'], input[type='password'] {
-  padding:5px;
-
-  font-family: Helvetica;
-  font-size: 16px;
-
-  color: #646464;
-  background:#f9f9f9;
-  border:1px solid #CCCCCC;
-}
-
-#login-button {
+#create-button {
   margin-top: 25px;
 }

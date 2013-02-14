@@ -1,5 +1,9 @@
-.idea/*
-tmp/*
-.DS_Store
-db/*
-cache/*
+syntax: regexp
+
+\.idea/.*
+\.DS_Store
+.*/\.DS_Store
+tmp/.*
+\.sass-cache/.*
+db/.*
+public/styles/.*\.css
