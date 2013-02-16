@@ -10,6 +10,9 @@
             %td
               = "#{ad.clicks.size}&nbsp;/&nbsp;#{ad.displays.size}"
             %td
-              [&nbsp;
-              %a{href:"/delete/#{ad.id}"}<> ✘
-              &nbsp;]
+              %span<>
+                [&nbsp;
+                %a{href:'#', onclick:'$("hidden_form").submit();'}<> ✘
+                %form.hidden{method:'post', action:"/#{ad.id}", id:'hidden_form'}<>
+                  %input{type:'hidden', name:'_method', value:'delete'}
+                &nbsp;]

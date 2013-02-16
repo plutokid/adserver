@@ -70,6 +70,7 @@ class AdServer < Sinatra::Base
     set :session_secret, "secret"
   }
 
+  enable :method_override
   set :username, 'pooria'
   set :password, '12345'
 
@@ -176,7 +177,7 @@ class AdServer < Sinatra::Base
   end
 
 
-  get '/delete/:id' do
+  delete '/:id' do
     require_authorize!
     ad = Ad.get(params[:id])
     unless ad.nil?
