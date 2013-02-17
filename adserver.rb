@@ -58,7 +58,7 @@ end
 class AdServer < Sinatra::Base
   use Rack::ETag
 
-  include Sinatra::Authorization
+  register Sinatra::Authorization
   register Sinatra::RespondWith
 
   configure :development do
