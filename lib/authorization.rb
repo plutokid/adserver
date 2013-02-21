@@ -14,7 +14,7 @@ module Sinatra
       end
 
       def logout!
-        session[:authorized] = false
+        session.clear
       end
 
       def require_authorize!
