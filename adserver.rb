@@ -76,6 +76,13 @@ class AdServer < Sinatra::Base
 
 
 
+  helpers do
+    def current?(path='/')
+      (request.path==path || request.path==path+'/') ? 'current' : nil
+    end
+  end
+
+
   
   before do
     @stylesheets = ['main-style.css']

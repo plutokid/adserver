@@ -17,17 +17,17 @@
           #nav-container
             %ul#navbar
 
-              %li.item
+              %li.item{class:current?('/')}
                 %a{href:'/'} Home
 
               - if authorized?
-                %li.item
+                %li.item{class:current?('/new')}
                   %a{href:'/new'} Create New Ad
 
-                %li.item
+                %li.item{class:current?('/sample-ad')}
                   %a{href:'/sample-ad'} View A Sample Ad
 
-                %li.item#ads-list
+                %li.item#ads-list{class:current?('/list')}
                   %a{href:"/list"} Display
                   %span#refresh-button.off
                     %a{href:"javascript:reload_ads_list();"} (refresh)
@@ -38,11 +38,11 @@
           #nav-container
             - if authorized?
               %ul#navbar
-                %li.item
+                %li.item{class:current?('/logout')}
                   %a{href:'/logout'} Logout
             - else
               %ul#navbar
-                %li.item
+                %li.item{class:current?('/login')}
                   %a{href:'/login'} Login
 
   %div= yield

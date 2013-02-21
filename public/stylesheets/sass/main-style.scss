@@ -84,7 +84,7 @@ body {
     display: inline;
     list-style: none;
     position: relative;
-    &:hover {
+    &:hover, &.current {
       background: #d9e1eb;
       border-top-right-radius: 7px;
       border-top-left-radius: 7px;
@@ -92,6 +92,8 @@ body {
         text-decoration: underline;
         color: #2b2d2f;
       }
+    }
+    &:hover {
       > ul.item-list {
         display: inline-table;
         > li.detail-item {
