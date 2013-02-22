@@ -101,6 +101,8 @@ class AdServer < Sinatra::Base
 
 
   get '/login' do
+    redirect (params[:to] ? "#{unescape(params[:to])}" : '/') if authorized?
+
     @stylesheets += ['login.css', 'buttons.css']
     @title = 'Login'
     haml :login
@@ -110,7 +112,8 @@ class AdServer < Sinatra::Base
     if authorize(params[:username], params[:password])
       redirect unescape(params[:redirect_to]) || '/'
     else
-      redirect '/login'
+      login_path = '/login' + (params[:redirect_to] ? "?to=#{unescape(params[:redirect_to])}" : '')
+      redirect login_path
     end
   end
 
