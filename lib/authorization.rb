@@ -7,8 +7,10 @@ module Sinatra
 
       def authorize(username, password)
         if [username, password] == [settings.username, settings.password]
+          flash[:notice] = "Successful Login!"
           session[:authorized] = true
         else
+          flash[:error] = "Incorrect username/password"
           session[:authorized] = false
         end
       end

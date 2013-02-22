@@ -153,6 +153,29 @@ body {
   color: #ff7020 !important;
 }
 
+
+/* Flash */
+
+.flash {
+  margin: 0 auto;
+  margin-bottom: 30px;
+  padding: 10px;
+  max-width: 300px;
+  border: 3px solid;
+  border-radius: 5px;
+  &.notice {
+    border-color: #008560;
+    background-color: rgba(85, 255, 31, 0.23);
+    text-align: center;
+  }
+  &.error {
+    border-color: #990009;
+    background-color: rgba(233, 105, 105, 0.22);
+    text-align: center;
+  }
+}
+
+
 /* Page Container */
 
 #detail-container {

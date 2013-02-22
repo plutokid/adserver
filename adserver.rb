@@ -1,6 +1,7 @@
 require 'rack'
 require 'sinatra/base'
 require 'sinatra/contrib'
+require 'sinatra/flash'
 require 'dm-core'
 require 'dm-timestamps'
 require 'dm-migrations'
@@ -60,6 +61,7 @@ class AdServer < Sinatra::Base
 
   register Sinatra::Authorization
   register Sinatra::RespondWith
+  register Sinatra::Flash
 
   configure :development do
     DataMapper::auto_upgrade!
@@ -110,7 +112,7 @@ class AdServer < Sinatra::Base
 
   post '/login' do
     if authorize(params[:username], params[:password])
-      redirect unescape(params[:redirect_to]) || '/'
+      redirect unescape(params[:redirect_to]) || '/login'
     else
       login_path = '/login' + (params[:redirect_to] ? "?to=#{unescape(params[:redirect_to])}" : '')
       redirect login_path
@@ -168,6 +170,7 @@ class AdServer < Sinatra::Base
   post '/new' do
     require_authorize!
     if !params[:image]
+      flash[:error] = "Please provide an image."
       redirect '/new'
     end
 
@@ -180,8 +183,10 @@ class AdServer < Sinatra::Base
       File.open(path, 'wb') do |f|
         f.write(params[:image][:tempfile].read)
       end
+      flash[:notice] = "'#{@ad.title}' was created successfully!"
       redirect "/display/#{@ad.id}"
     else
+      flash[:error] = "Couldn't save ad..."
       redirect '/new'
     end
   end
@@ -189,11 +194,15 @@ class AdServer < Sinatra::Base
 
   delete '/:id' do
     require_authorize!
+    p "delete #{params[:id]}"
     ad = Ad.get(params[:id])
-    unless ad.nil?
+    if ad.nil?
+      flash[:error] = "No ad with id=#{params[:id]} exists!"
+    else
       path = File.join(Dir.pwd, '/public/ads/', ad.filename)
       File.delete(path)
       ad.destroy
+      flash[:notice] = "Removed '#{ad.title}' with id=#{ad.id}!"
     end
     redirect '/list'
   end

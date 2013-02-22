@@ -12,7 +12,8 @@
             %td
               %span<>
                 [&nbsp;
-                %a{href:'#', onclick:'$("hidden_form").submit();'}<> ✘
-                %form.hidden{method:'post', action:"/#{ad.id}", id:'hidden_form'}<>
+                - form_id = "hidden_form_#{index}"
+                %a{href:'#', onclick:"$('##{form_id}').submit();"}<> ✘
+                %form.hidden{method:'post', action:"/#{ad.id}", id:"#{form_id}"}<>
                   %input{type:'hidden', name:'_method', value:'delete'}
                 &nbsp;]

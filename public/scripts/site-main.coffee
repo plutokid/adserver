@@ -1,6 +1,12 @@
 $(document).ready ->
   $("#ads-list").one "mouseover", reload_ads_list
   clear_ads_menu()
+  remove_notice_flash_messages()
+
+remove_notice_flash_messages = ->
+  setTimeout (->
+    $('.flash.notice').fadeOut()
+  ), 5000
 
 clear_ads_menu = ->
   $("#ads-list ul").children().remove()
