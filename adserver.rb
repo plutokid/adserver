@@ -129,7 +129,7 @@ class AdServer < Sinatra::Base
   get '/ad' do
     random_id = repository(:default).adapter.select(
         'SELECT id FROM ads ORDER BY random() LIMIT 1;'
-    )
+    )[0]
     @ad = Ad.get(random_id)
     @ad.displays.create(:ip_address => env["REMOTE_ADDR"])
     erb :ad, layout: false
