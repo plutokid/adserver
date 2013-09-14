@@ -2,7 +2,7 @@
 
 ### New Ad
 
-![New Ad](https://github.com/pooriaazimi/adserver/raw/master/images/new)
+![New Ad](https://github.com/pooriaazimi/adserver/raw/master/images/new.png)
 
 
 ### Sample Ad
