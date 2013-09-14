@@ -1,0 +1,26 @@
+h1. A simple Ad Server
+h2. (for tracking ad impressions)
+
+h3. New Ad
+
+!https://github.com/pooriaazimi/adserver/raw/master/images/new.png!
+
+
+h3. Sample Ad
+
+!https://github.com/pooriaazimi/adserver/raw/master/images/sample-ad.png!
+
+
+h3. List Ads (also in navbar, with ajax)
+
+!https://github.com/pooriaazimi/adserver/raw/master/images/list.png!
+
+
+h3. Login/Logout
+
+!https://github.com/pooriaazimi/adserver/raw/master/images/login.png!
+
+
+h3. Display An Ad
+
+!https://github.com/pooriaazimi/adserver/raw/master/images/display.png!
