@@ -1,18 +1,24 @@
+# A simple Ad Server (for tracking ad impressions)
+
 - ### New Ad
-![New Ad](/readme-images/new.png?raw=true)
+
+![New Ad](https://github.com/pooriaazimi/adserver/raw/master/images/new)
 
 
 - ### Sample Ad
-![Sample Ad](/readme-images/sample-ad.png?raw=true)
+
+![Sample Ad](https://github.com/pooriaazimi/adserver/raw/master/images/sample-ad.png)
 
 
 - ### List Ads (also in navbar, with ajax)
-![List Ads](/readme-images/list.png?raw=true)
+
+![List Ads](https://github.com/pooriaazimi/adserver/raw/master/images/list.png)
 
 
 - ### Login/Logout
-![Login](/readme-images/login.png?raw=true)
+![Login](https://github.com/pooriaazimi/adserver/raw/master/images/login.png)
 
 
 - ### Display An Ad
-![Display Ad](/readme-images/display.png?raw=true)
+
+![Display Ad](https://github.com/pooriaazimi/adserver/raw/master/images/display.png)
